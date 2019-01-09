@@ -50,7 +50,7 @@ fn main() {
         _ => if ncurses_lib.is_none() {
             println!("cargo:rustc-link-lib={}", ncurses_lib_names.last().unwrap())
         }
-    }
+    };
 
     if let Ok(x) = std::env::var("NCURSES_RS_RUSTC_FLAGS") {
         println!("cargo:rustc-flags={}", x);
