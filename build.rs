@@ -63,6 +63,9 @@ fn check_chtype_size(ncurses_lib: &Option<Library>) {
     let out_dir = env::var("OUT_DIR").expect("cannot get OUT_DIR");
     let src = format!("{}", Path::new(&out_dir).join("chtype_size.c").display());
     let bin = format!("{}", Path::new(&out_dir).join("chtype_size").display());
+    if cfg!(windows) {
+        bin = format!("{}", Path::new(&out_dir).join("chtype_size.exe").display());
+    }
 
     let mut fp = File::create(&src).expect(&format!("cannot create {}", src));
     fp.write_all(b"
