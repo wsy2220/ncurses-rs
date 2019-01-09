@@ -50,7 +50,7 @@ fn main() {
         _ => if ncurses_lib.is_none() {
             println!("cargo:rustc-link-lib={}", ncurses_lib_names.last().unwrap())
         }
-    };
+    }
 
     if let Ok(x) = std::env::var("NCURSES_RS_RUSTC_FLAGS") {
         println!("cargo:rustc-flags={}", x);
@@ -65,7 +65,7 @@ fn check_chtype_size(ncurses_lib: &Option<Library>) {
     let bin = match cfg!(windows) {
         true => format!("{}", Path::new(&out_dir).join("chtype_size.exe").display()),
         false => format!("{}", Path::new(&out_dir).join("chtype_size").display()),
-    }
+    };
 
     let mut fp = File::create(&src).expect(&format!("cannot create {}", src));
     fp.write_all(b"
